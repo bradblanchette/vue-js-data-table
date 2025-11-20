@@ -8,6 +8,15 @@ createApp({
             error: ''
         }
     },
+    computed: {
+        getHeaders() {
+            if(this.jobs && this.jobs.length > 0) {
+                return Object.keys(this.jobs[0]).map(k => k.replace(/_/g, ' '));
+            }
+
+            return [];
+        }
+    },
     async mounted() {
         try {
             const response = await fetch('https://jsonfakery.com/jobs');
